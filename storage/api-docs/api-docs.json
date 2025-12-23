@@ -1,0 +1,1006 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Laravel API Docs",
+        "description": "Sanctum Auth API Documentation",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/register": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Register user",
+                "operationId": "8e4e3cb7b46126f4696379d3c7eeb4ad",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "fullname",
+                                    "email",
+                                    "password",
+                                    "password_confirmation"
+                                ],
+                                "properties": {
+                                    "fullname": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    },
+                                    "password_confirmation": {
+                                        "type": "string"
+                                    },
+                                    "referral_code": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/socialLoginRegister": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Social Login Registration",
+                "operationId": "f830b50e5016d188d7b99efeb0ea2ccb",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "authenticationSocialId",
+                                    "authenticationProvider"
+                                ],
+                                "properties": {
+                                    "fullname": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "authenticationSocialId": {
+                                        "type": "string"
+                                    },
+                                    "authenticationProvider": {
+                                        "type": "string"
+                                    },
+                                    "referral_code": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Login user",
+                "operationId": "222b2625838e3c57e017987f73598fda",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Login success"
+                    }
+                }
+            }
+        },
+        "/api/logout": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Logout user",
+                "operationId": "ad65cbbd4e9f201619eae184a5961a98",
+                "responses": {
+                    "200": {
+                        "description": "Logged out"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/continue-watching/update": {
+            "post": {
+                "tags": [
+                    "Continue Watching"
+                ],
+                "summary": "Update or create video watching progress",
+                "operationId": "2edff206f85bd1c785a300da27d429d5",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "video_id",
+                                    "last_watched_second",
+                                    "duration"
+                                ],
+                                "properties": {
+                                    "video_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "last_watched_second": {
+                                        "type": "integer",
+                                        "example": 120
+                                    },
+                                    "duration": {
+                                        "type": "integer",
+                                        "example": 600
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Progress updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Progress updated successfully"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "user_id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "video_id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "last_watched_second": {
+                                                    "type": "integer",
+                                                    "example": 120
+                                                },
+                                                "duration": {
+                                                    "type": "integer",
+                                                    "example": 600
+                                                },
+                                                "progress_percent": {
+                                                    "type": "number",
+                                                    "example": 20
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "format": "date-time"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "format": "date-time"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/continue-watching/get": {
+            "get": {
+                "tags": [
+                    "Continue Watching"
+                ],
+                "summary": "Get video watching progress for a user",
+                "operationId": "083a68925e480c744ed3b6b8689d8547",
+                "parameters": [
+                    {
+                        "name": "video_id",
+                        "in": "query",
+                        "description": "ID of the video",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Video progress fetched successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "user_id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "video_id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "last_watched_second": {
+                                                    "type": "integer",
+                                                    "example": 120
+                                                },
+                                                "duration": {
+                                                    "type": "integer",
+                                                    "example": 600
+                                                },
+                                                "progress_percent": {
+                                                    "type": "number",
+                                                    "example": 20
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "format": "date-time"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "format": "date-time"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/continue-watching/list": {
+            "get": {
+                "tags": [
+                    "Continue Watching"
+                ],
+                "summary": "List all videos a user is currently watching",
+                "operationId": "b7d182e0babad099b38cda0989feadea",
+                "responses": {
+                    "200": {
+                        "description": "List of videos fetched successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "user_id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "video_id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "last_watched_second": {
+                                                        "type": "integer",
+                                                        "example": 120
+                                                    },
+                                                    "duration": {
+                                                        "type": "integer",
+                                                        "example": 600
+                                                    },
+                                                    "progress_percent": {
+                                                        "type": "number",
+                                                        "example": 20
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "format": "date-time"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "string",
+                                                        "format": "date-time"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/userProfileByToken": {
+            "get": {
+                "tags": [
+                    "Profile"
+                ],
+                "summary": "Get authenticated user profile",
+                "description": "This API returns the profile of the logged-in user using Sanctum Bearer Token.",
+                "operationId": "16aeef394270857447c7332d8da5bde3",
+                "responses": {
+                    "200": {
+                        "description": "Profile fetched successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Profile data fetched successfully"
+                                        },
+                                        "user": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "John Doe"
+                                                },
+                                                "email": {
+                                                    "type": "string",
+                                                    "example": "john@example.com"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated - Invalid or missing token",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthenticated"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/check-subscription": {
+            "get": {
+                "tags": [
+                    "Subscription"
+                ],
+                "summary": "Check user subscription status",
+                "description": "Returns whether the logged-in user has an active subscription. Requires Sanctum token.",
+                "operationId": "bdd2f8886582e4aaf5dea8a5894c000e",
+                "responses": {
+                    "200": {
+                        "description": "Subscription status",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "subscriptionActive": {
+                                            "type": "boolean",
+                                            "example": true
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/video/categories": {
+            "get": {
+                "tags": [
+                    "Video"
+                ],
+                "summary": "Get all video categories",
+                "description": "Returns a list of all video categories",
+                "operationId": "c40d7062dd888fab150e28f088661876",
+                "responses": {
+                    "200": {
+                        "description": "Video categories fetched successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Video categories fetched successfully"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "Yoga"
+                                                    },
+                                                    "image": {
+                                                        "type": "string",
+                                                        "example": "yoga.jpg"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/video/category/{id}/videos": {
+            "get": {
+                "tags": [
+                    "Video"
+                ],
+                "summary": "Get videos by category",
+                "description": "Returns all videos under a specific category",
+                "operationId": "04b3477a0cb189bfbe39d25f8717dd63",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Category ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Videos fetched successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Videos fetched successfully"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 101
+                                                    },
+                                                    "title": {
+                                                        "type": "string",
+                                                        "example": "Morning Yoga"
+                                                    },
+                                                    "thumbnail": {
+                                                        "type": "string",
+                                                        "example": "thumb1.jpg"
+                                                    },
+                                                    "video_url": {
+                                                        "type": "string",
+                                                        "example": "video1.mp4"
+                                                    },
+                                                    "duration": {
+                                                        "type": "string",
+                                                        "example": "12:45"
+                                                    },
+                                                    "description": {
+                                                        "type": "string",
+                                                        "example": "Relaxing yoga session"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "404": {
+                        "description": "Category not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/video/categories-with-videos/{categoryId}": {
+            "get": {
+                "tags": [
+                    "Video"
+                ],
+                "summary": "Get categories with videos",
+                "description": "Returns all categories or a specific category along with their videos",
+                "operationId": "3f9647395527057d2e727d14bf80d11c",
+                "parameters": [
+                    {
+                        "name": "categoryId",
+                        "in": "path",
+                        "description": "Optional category ID to filter videos",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "example": 3
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Categories and videos fetched successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Categories and videos fetched successfully"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "Yoga"
+                                                    },
+                                                    "image": {
+                                                        "type": "string",
+                                                        "example": "yoga.jpg"
+                                                    },
+                                                    "videos": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "properties": {
+                                                                "id": {
+                                                                    "type": "integer",
+                                                                    "example": 101
+                                                                },
+                                                                "title": {
+                                                                    "type": "string",
+                                                                    "example": "Morning Yoga"
+                                                                },
+                                                                "thumbnail_path": {
+                                                                    "type": "string",
+                                                                    "example": "thumb1.jpg"
+                                                                },
+                                                                "video_path": {
+                                                                    "type": "string",
+                                                                    "example": "video1.mp4"
+                                                                },
+                                                                "duration": {
+                                                                    "type": "string",
+                                                                    "example": "12:45"
+                                                                }
+                                                            },
+                                                            "type": "object"
+                                                        }
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/video/{videoId}": {
+            "get": {
+                "tags": [
+                    "Video"
+                ],
+                "summary": "Get video details",
+                "description": "Returns details of a specific video by ID",
+                "operationId": "96ec6d8ed7bec65f44761e7cc3713976",
+                "parameters": [
+                    {
+                        "name": "videoId",
+                        "in": "path",
+                        "description": "ID of the video to fetch",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 101
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Video details fetched successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Video details fetched successfully"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 101
+                                                },
+                                                "title": {
+                                                    "type": "string",
+                                                    "example": "Morning Yoga"
+                                                },
+                                                "description": {
+                                                    "type": "string",
+                                                    "example": "A relaxing morning yoga session"
+                                                },
+                                                "thumbnail_path": {
+                                                    "type": "string",
+                                                    "example": "thumb1.jpg"
+                                                },
+                                                "video_path": {
+                                                    "type": "string",
+                                                    "example": "video1.mp4"
+                                                },
+                                                "duration": {
+                                                    "type": "string",
+                                                    "example": "12:45"
+                                                },
+                                                "category_id": {
+                                                    "type": "integer",
+                                                    "example": 3
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "format": "date-time"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "format": "date-time"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Video not found"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/videos/trending": {
+            "get": {
+                "tags": [
+                    "Video"
+                ],
+                "summary": "Get trending videos based on likes",
+                "description": "Returns a list of trending videos ordered by likes, including continue watching info",
+                "operationId": "06deaf785895c18113668a603eff257c",
+                "parameters": [
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Limit the number of trending videos",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "example": 10
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Trending videos fetched successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Trending videos fetched successfully"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 101
+                                                    },
+                                                    "title": {
+                                                        "type": "string",
+                                                        "example": "Morning Yoga"
+                                                    },
+                                                    "description": {
+                                                        "type": "string",
+                                                        "example": "A relaxing morning yoga session"
+                                                    },
+                                                    "thumbnail_path": {
+                                                        "type": "string",
+                                                        "example": "thumb1.jpg"
+                                                    },
+                                                    "video_path": {
+                                                        "type": "string",
+                                                        "example": "video1.mp4"
+                                                    },
+                                                    "duration": {
+                                                        "type": "string",
+                                                        "example": "12:45"
+                                                    },
+                                                    "likes": {
+                                                        "type": "integer",
+                                                        "example": 150
+                                                    },
+                                                    "continue_watching": {
+                                                        "properties": {
+                                                            "last_watched_second": {
+                                                                "type": "integer",
+                                                                "example": 120
+                                                            },
+                                                            "duration": {
+                                                                "type": "integer",
+                                                                "example": 600
+                                                            },
+                                                            "progress_percent": {
+                                                                "type": "number",
+                                                                "example": 20
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Continue Watching",
+            "description": "API Endpoints for Continue Watching feature"
+        },
+        {
+            "name": "Authentication",
+            "description": "Authentication"
+        },
+        {
+            "name": "Profile",
+            "description": "Profile"
+        },
+        {
+            "name": "Subscription",
+            "description": "Subscription"
+        },
+        {
+            "name": "Video",
+            "description": "Video"
+        }
+    ],
+    "components": {
+        "securitySchemes": {
+            "sanctum": {
+                "type": "apiKey",
+                "description": "Enter token in format (Bearer <token>)",
+                "name": "Authorization",
+                "in": "header"
+            }
+        }
+    }
+}
